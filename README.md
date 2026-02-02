@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CodeTrace: AI-Powered Frontend Bug Detective
 
 CodeTrace is a professional debugging tool that analyzes project codebases and bug reproduction videos to pinpoint visual bugs and suggest fixes. Powered by Google Gemini AI, it helps frontend developers reduce debugging time by correlating visual symptoms with the source code.
@@ -39,3 +40,6 @@ CodeTrace is a professional debugging tool that analyzes project codebases and b
 
 ---
 Built for performance and debugging excellence.
+=======
+# -CodeTrace
+>>>>>>> 657f121e5cde35cba5d0be739c52b45f12accdf4
