@@ -1,0 +1,30 @@
+"""Config module initialization"""
+from .settings import (
+    API_KEY,
+    API_CONFIGURED,
+    PROJECT_ROOT,
+    HISTORY_FILE,
+    STYLES_DIR,
+    IGNORED_PATHS,
+    IGNORED_FILES,
+    DEFAULT_EXTENSIONS,
+    ALL_EXTENSIONS,
+    ALLOWED_EXTENSIONS_KEY,
+    AI_MODEL,
+    SYSTEM_PROMPT
+)
+
+__all__ = [
+    'API_KEY',
+    'API_CONFIGURED',
+    'PROJECT_ROOT',
+    'HISTORY_FILE',
+    'STYLES_DIR',
+    'IGNORED_PATHS',
+    'IGNORED_FILES',
+    'DEFAULT_EXTENSIONS',
+    'ALL_EXTENSIONS',
+    'ALLOWED_EXTENSIONS_KEY',
+    'AI_MODEL',
+    'SYSTEM_PROMPT'
+]
