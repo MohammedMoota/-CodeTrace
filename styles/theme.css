@@ -1,397 +1,370 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   CodeTrace Theme - Sage Green Premium
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* 
+ * CREATIVE WEB MANUAL™ DESIGN SYSTEM
+ * Cloned from creativewebmanual.com
+ * Light hero container + dark theme with scroll animations
+ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Space Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+/* ============================================================================
+   FONTS
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+/* ============================================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================================ */
 :root {
-    --sage-100: #F5F7D0;
-    --sage-200: #E6EFD0;
-    --sage-300: #CBE4C9;
-    --sage-400: #86E6B0;
-    --sage-500: #55D497;
+    /* Colors */
+    --bg-dark: #080807;
+    --bg-light: #f5f5f5;
+    --text-dark: #080807;
+    --text-light: #fcfcfc;
+    --text-gray: #7d7d7d;
+    --border-dark: #292929;
+    --border-light: #ddd;
+    --accent: #ffd900;
 
-    /* Text Colors - High Contrast */
-    --text-primary: #FFFFFF;
-    --text-secondary: #E0E0E0;
-    --text-muted: #B0B0B0;
+    /* Typography */
+    --font-display: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 
-    --bg-dark: #0A0C0B;
-    --bg-card: rgba(20, 24, 22, 0.7);
-    --border: rgba(134, 230, 176, 0.2);
-    --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
 }
 
+/* ============================================================================
+   GLOBAL STYLES
+   ============================================================================ */
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+}
+
+/* Streamlit App - Dark background */
 .stApp {
-    background: radial-gradient(circle at top left, #151816, #000000);
-    font-family: 'Inter', sans-serif;
-    color: var(--text-primary);
+    background-color: var(--bg-dark) !important;
+    color: var(--text-light) !important;
+    font-family: var(--font-mono) !important;
+    -webkit-font-smoothing: antialiased;
 }
 
-#MainMenu,
-footer,
-.stDeployButton {
-    visibility: hidden;
-    display: none;
+.stApp>header {
+    background-color: transparent !important;
 }
+
+/* Main content area */
+[data-testid="stMainBlockContainer"] {
+    background-color: var(--bg-dark) !important;
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
 
 h1,
 h2,
 h3,
-h4 {
-    font-family: 'Space Grotesk', sans-serif !important;
+h4,
+h5,
+h6 {
+    font-family: var(--font-display) !important;
+    color: var(--text-light) !important;
+    font-weight: 700;
+    text-transform: uppercase;
     letter-spacing: -0.02em;
 }
 
-/* Sidebar */
-section[data-testid="stSidebar"] {
-    background: rgba(15, 18, 16, 0.95) !important;
-    border-right: 1px solid var(--border) !important;
-    backdrop-filter: blur(20px);
+h1 {
+    font-size: 2.5rem !important;
 }
 
-/* Sidebar Toggle */
-button[data-testid="stBaseButton-headerNoPadding"],
-button[data-testid="stBaseButton-header"] {
-    background: var(--sage-400) !important;
-    color: #0f1210 !important;
-    border-radius: 50% !important;
-    width: 40px !important;
-    height: 40px !important;
-    box-shadow: 0 0 15px rgba(152, 201, 163, 0.4) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+h2 {
+    font-size: 1.75rem !important;
 }
 
-button[data-testid="stBaseButton-headerNoPadding"]:hover,
-button[data-testid="stBaseButton-header"]:hover {
-    transform: rotate(90deg) scale(1.1) !important;
-    background: var(--sage-300) !important;
+h3 {
+    font-size: 1.25rem !important;
 }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, rgba(152, 201, 163, 0.1), rgba(152, 201, 163, 0.02));
-    border: 1px solid rgba(152, 201, 163, 0.1);
-    box-shadow: var(--shadow);
-    border-radius: 24px;
-    padding: 3rem 2rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
+p,
+span,
+div {
+    font-family: var(--font-mono);
 }
 
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(152, 201, 163, 0.05), transparent 70%);
-    transform: translate(-50%, -50%);
-    z-index: -1;
+/* ============================================================================
+   SIDEBAR
+   ============================================================================ */
+
+[data-testid="stSidebar"] {
+    background-color: var(--bg-dark) !important;
+    border-right: 1px solid var(--border-dark) !important;
 }
 
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #fff, var(--sage-300));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+[data-testid="stSidebar"] * {
+    color: var(--text-light) !important;
+    font-family: var(--font-mono) !important;
 }
 
-.hero-sub {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    max-width: 500px;
-    margin: 0 auto;
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] h4,
+[data-testid="stSidebar"] h5 {
+    font-family: var(--font-mono) !important;
 }
 
-.hero-sub strong {
-    color: var(--sage-400);
+[data-testid="stSidebar"] .stMarkdown strong {
+    color: var(--accent) !important;
 }
 
-/* Tags */
-.tags {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-}
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
 
-.tag {
-    background: rgba(152, 201, 163, 0.1);
-    border: 1px solid var(--border);
-    color: var(--sage-300);
-    padding: 6px 14px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-}
-
-/* Glass Cards */
-.upload-card,
-.config-panel,
-.result-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(12px);
-    border-radius: 16px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.upload-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--sage-500);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* Card Typography */
-.card-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-    display: block;
-}
-
-.card-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 6px 0;
-}
-
-.card-desc {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin: 0;
-}
-
-/* Buttons */
 .stButton>button {
-    background: linear-gradient(90deg, var(--sage-400), var(--sage-500)) !important;
-    color: #0f1210 !important;
-    font-weight: 600 !important;
-    border-radius: 50px !important;
-    padding: 0.6rem 2rem !important;
+    background-color: var(--text-dark) !important;
+    color: var(--text-light) !important;
+    font-family: var(--font-mono) !important;
+    font-weight: 500 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
     border: none !important;
-    box-shadow: 0 5px 20px rgba(152, 201, 163, 0.3) !important;
+    border-radius: 0 !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: all 0.2s ease !important;
 }
 
 .stButton>button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(152, 201, 163, 0.5) !important;
+    background-color: var(--text-light) !important;
+    color: var(--text-dark) !important;
 }
 
-/* Config Panel Specifics */
-.config-title {
-    color: var(--sage-100);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+.stButton>button[kind="secondary"] {
+    background-color: transparent !important;
+    color: var(--text-gray) !important;
+    border: 1px solid var(--border-dark) !important;
 }
 
-.stat-box {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 1rem;
-    text-align: center;
-    border: 1px solid var(--border);
+.stButton>button[kind="secondary"]:hover {
+    border-color: var(--text-light) !important;
+    color: var(--text-light) !important;
 }
 
-/* API Status */
-.api-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 0.8rem;
+.stButton>button[kind="primary"] {
+    background-color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+    color: #080807 !important;
+    font-weight: 800 !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.api-ok {
-    background: rgba(152, 201, 163, 0.15);
-    border: 1px solid rgba(152, 201, 163, 0.3);
-    color: var(--sage-300);
+.stButton>button[kind="primary"]:hover {
+    background-color: #ffd900 !important;
+    border-color: #ffd900 !important;
+    color: #080807 !important;
+    box-shadow: 0 0 15px rgba(255, 217, 0, 0.4);
 }
 
-.api-ok::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: var(--sage-400);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--sage-400);
+/* ============================================================================
+   FORM ELEMENTS
+   ============================================================================ */
+
+/* Text inputs */
+.stTextInput>div>div>input,
+.stTextArea>div>div>textarea {
+    background-color: var(--bg-light) !important;
+    color: var(--text-dark) !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: 0 !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.85rem !important;
 }
 
-.api-err {
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    color: #fca5a5;
+.stTextInput>div>div>input:focus,
+.stTextArea>div>div>textarea:focus {
+    border-color: var(--text-dark) !important;
+    box-shadow: none !important;
 }
 
-.api-err::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: #ef4444;
-    border-radius: 50%;
+/* File uploader */
+[data-testid="stFileUploader"] {
+    background-color: var(--bg-light) !important;
+    border: 1px dashed var(--border-light) !important;
+    border-radius: 0 !important;
 }
 
-/* Sidebar Components */
-.sidebar-header {
-    text-align: center;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1rem;
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--text-dark) !important;
 }
 
-.sidebar-logo {
-    font-size: 3rem;
+[data-testid="stFileUploader"] * {
+    color: var(--text-dark) !important;
 }
 
-.sidebar-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
+/* Multiselect */
+.stMultiSelect>div {
+    background-color: var(--bg-light) !important;
 }
 
-.sidebar-sub {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+.stMultiSelect [data-baseweb="tag"] {
+    background-color: var(--text-dark) !important;
+    color: var(--text-light) !important;
+    border-radius: 0 !important;
 }
 
-/* Results */
-.result-box::before {
-    content: '';
-    position: absolute;
+/* ============================================================================
+   EXPANDER
+   ============================================================================ */
+
+.stExpander {
+    background-color: transparent !important;
+    border: 1px solid var(--border-dark) !important;
+    border-radius: 0 !important;
+}
+
+.stExpander summary {
+    font-family: var(--font-mono) !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.05em !important;
+    color: var(--text-light) !important;
+}
+
+/* ============================================================================
+   DIVIDERS
+   ============================================================================ */
+
+hr,
+[data-testid="stMarkdownDivider"] {
+    border: none !important;
+    border-top: 1px solid var(--border-dark) !important;
+}
+
+/* ============================================================================
+   CAPTIONS
+   ============================================================================ */
+
+.stCaption,
+[data-testid="stCaptionContainer"] {
+    font-family: var(--font-mono) !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--text-gray) !important;
+}
+
+/* ============================================================================
+   ALERTS
+   ============================================================================ */
+
+.stAlert {
+    background-color: transparent !important;
+    border: 1px solid var(--border-dark) !important;
+    border-radius: 0 !important;
+    color: var(--text-light) !important;
+}
+
+.stSuccess {
+    border-left: 3px solid var(--accent) !important;
+}
+
+/* ============================================================================
+   PROGRESS BAR
+   ============================================================================ */
+
+.stProgress>div>div {
+    background-color: var(--text-dark) !important;
+}
+
+/* ============================================================================
+   MARKDOWN CODE
+   ============================================================================ */
+
+.stMarkdown code {
+    background-color: var(--bg-light) !important;
+    color: var(--text-dark) !important;
+    padding: 0.15em 0.4em;
+    border-radius: 0;
+    font-family: var(--font-mono) !important;
+    font-size: 0.85em;
+}
+
+/* ============================================================================
+   CONTENT AREA STYLING
+   ============================================================================ */
+
+/* Light background sections */
+.light-section {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    padding: var(--space-lg);
+}
+
+/* ============================================================================
+   CRITICAL UI OVERRIDES (Prevent Glitch/Flash)
+   ============================================================================ */
+
+/* BLACK CURTAIN - Prevents "Flash of Content" Glitch on Reload */
+body::before {
+    content: "";
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--sage-400), var(--sage-300));
-    border-radius: 14px 14px 0 0;
+    width: 100vw;
+    height: 100vh;
+    background: #080807;
+    /* Match bg-dark */
+    z-index: 99998;
+    /* Below Hero (99999), Above everything else */
+    animation: fadeCurtain 1.5s ease-out forwards;
+    pointer-events: none;
 }
 
-.result-header {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
+@keyframes fadeCurtain {
+    0% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    /* Hold black for ~1s to cover loading */
+    100% {
+        opacity: 0;
+    }
 }
 
-/* Other Components */
-.section-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 0.5rem 0;
+/* Hide default Streamlit Sidebar Navigation */
+[data-testid="stSidebarNav"] {
+    display: none !important;
 }
 
-.section-sub {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin: 0 0 1.5rem 0;
+/* Hide default Sidebar Header (Close button/Icon) */
+/* DO NOT USE display: none - it breaks JS click! */
+[data-testid="stSidebarHeader"] {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    /* Only block mouse, JS still works */
+    position: absolute !important;
+    top: -9999px !important;
+    /* Move off-screen visually */
+    height: 0 !important;
+    overflow: hidden !important;
 }
 
-/* File Uploader */
-/* File Uploader */
-[data-testid='stFileUploader'] {
-    width: 100%;
-    padding-top: 10px;
+/* Hide default App Header */
+[data-testid="stHeader"] {
+    background-color: transparent !important;
 }
 
-[data-testid='stFileUploader'] section {
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.03) !important;
-    border: 1px dashed var(--sage-400) !important;
-    border-radius: 12px !important;
-}
-
-[data-testid='stFileUploader'] section:hover {
-    background-color: rgba(152, 201, 163, 0.05) !important;
-}
-
-/* "Drag and drop file here" text */
-[data-testid='stFileUploader'] span {
-    color: var(--text-secondary) !important;
-}
-
-/* "Browse files" button */
-[data-testid='stFileUploader'] button {
-    background: var(--sage-400) !important;
-    color: #000000 !important;
-    /* Force black text on green button */
-    border: none !important;
-    font-weight: 600 !important;
-    padding: 0.25rem 1rem !important;
-    border-radius: 6px !important;
-}
-
-[data-testid='stFileUploader'] button:hover {
-    background: var(--sage-300) !important;
-    box-shadow: 0 4px 12px rgba(152, 201, 163, 0.3) !important;
-}
-
-/* Uploaded file info */
-[data-testid='stFileUploader'] small {
-    color: var(--text-muted) !important;
-}
-
-/* Expander */
-.streamlit-expanderHeader {
-    background: rgba(152, 201, 163, 0.04) !important;
-    border-radius: 8px !important;
-    color: var(--text-primary) !important;
-}
-
-/* Status */
-.stStatus {
-    background: rgba(152, 201, 163, 0.03) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 12px !important;
-}
-
-/* Footer */
-hr {
-    border: none;
-    height: 1px;
-    background: var(--border);
-    margin: 1.25rem 0;
-}
-
-.footer {
-    text-align: center;
-    padding: 2rem 0;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-}
-
-.footer strong {
-    color: var(--sage-400);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-darker);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--sage-500);
-    border-radius: 10px;
+[data-testid="stDecoration"] {
+    display: none !important;
 }

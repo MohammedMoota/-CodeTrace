@@ -1,82 +1,51 @@
 """
 Config Panel Component
-Renders the right-side configuration panel with API status, file settings, and stats.
+Renders the configuration panel with CWM-style design.
 """
 import streamlit as st
 from typing import List
-from config import API_CONFIGURED, ALL_EXTENSIONS, DEFAULT_EXTENSIONS
-from utils import get_file_stats
+from config.settings import DEFAULT_EXTENSIONS
 
 
 def render_config_panel() -> List[str]:
-    """
-    Render the configuration panel.
+    """Render the configuration panel with file extension selector."""
     
-    Returns:
-        List of selected file extensions
-    """
+    st.markdown("**`[04]` / SCAN CONFIGURATION**")
     
-    # Panel Header
-    st.markdown("""
-    <div class="config-panel">
-        <div class="config-title">Configuration</div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # API Status
-    if not API_CONFIGURED:
-        st.markdown("""
-        <div class="status-err">
-            <span>API Not Configured</span>
-        </div>
-        """, unsafe_allow_html=True)
-        st.caption("Add your API key to the `.env` file")
-    
-    st.markdown("---")
-    
-    # File Extensions
-    st.markdown("**File Types**")
-    st.caption("Select which file types to analyze")
-    
-    # Get current extensions from session state or use defaults
-    current_extensions = st.session_state.get('allowed_extensions', DEFAULT_EXTENSIONS)
-    
+    # File extensions selector
     selected_extensions = st.multiselect(
-        "File extensions",
-        options=ALL_EXTENSIONS,
-        default=current_extensions,
+        "Target Extensions",
+        options=DEFAULT_EXTENSIONS,
+        default=DEFAULT_EXTENSIONS[:5],
         label_visibility="collapsed"
     )
     
-    # Update session state
     st.session_state['allowed_extensions'] = selected_extensions
     
-    st.markdown("---")
-    
-    # Session Stats
-    st.markdown("**Session Stats**")
-    
-    processed, skipped = get_file_stats()
-    
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.metric("Analyzed", processed)
-    with col_b:
-        st.metric("Skipped", skipped)
-    
-    st.markdown("---")
-    
-    # Pro Tip
-    st.info("**Pro Tip:** Record bug reproduction steps clearly in your video for the best AI diagnosis.")
+    st.caption(f"[targeting {len(selected_extensions)} file types]")
     
     return selected_extensions
 
 
 def render_footer():
-    """Render the page footer."""
-    st.markdown("""
-    <div class="footer">
-        Built for <strong>Hackathon Excellence</strong><br>
-        Powered by Streamlit & Google Gemini AI
-    </div>
-    """, unsafe_allow_html=True)
+    """Render the CWM-style footer with navigation controls."""
+    
+    st.divider()
+    
+    # Use 4 columns: Branding | Spacer | Replay | Version
+    col1, col2, col3, col4 = st.columns([3, 2.5, 1.5, 0.5])
+    
+    with col1:
+        st.markdown("""
+**CodeTrace™**  
+The Debugging Manual  
+Powered by Gemini 1.5
+        """)
+    
+    with col3:
+        if st.button("[ REPLAY INTRO ]", use_container_width=True):
+            st.session_state['sidebar_state'] = 'collapsed'
+            st.rerun()
+            
+    with col4:
+         st.markdown("v1.0.0")

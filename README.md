@@ -1,45 +1,72 @@
-<<<<<<< HEAD
-# CodeTrace: AI-Powered Frontend Bug Detective
+# CodeTrace - AI Bug Detective
 
-CodeTrace is a professional debugging tool that analyzes project codebases and bug reproduction videos to pinpoint visual bugs and suggest fixes. Powered by Google Gemini AI, it helps frontend developers reduce debugging time by correlating visual symptoms with the source code.
+An AI-powered visual debugging tool that analyzes code and video recordings to identify and fix bugs.
 
-## Professional Features
+## Features
 
-- **Video-to-Code Correlation**: AI analyzes UI behavior in videos and identifies the relevant code sections.
-- **Support for Multi-Language Projects**: Analyzes Python, JavaScript, TypeScript, CSS, and more.
-- **Modular Architecture**: Clean, maintainable codebase with separated UI components and processing utilities.
-- **Privacy Focused**: No data is stored externally beyond the AI analysis session.
+- **Video Analysis**: Upload a screen recording of the bug in action
+- **Code Analysis**: Upload your codebase as a ZIP file
+- **AI-Powered**: Uses Google Gemini AI to correlate visual bugs with code
+- **Detailed Reports**: Get specific file and line references with fix suggestions
+- **History**: View past analyses anytime
 
-## Quick Start
+## Project Structure
 
-1. **Prerequisites**:
-   - Python 3.11+
-   - Google Gemini API Key
+```
+TraceBack Project/
+├── app.py                    # Entry point (redirects to tool page)
+├── pages/
+│   └── tool.py               # Main tool page with all functionality
+├── components/
+│   ├── __init__.py           # Component exports
+│   ├── hero.py               # 3D rotating sphere hero section
+│   ├── sidebar.py            # Sidebar with history and guide
+│   ├── upload.py             # File upload components
+│   └── config_panel.py       # Configuration panel and footer
+├── utils/
+│   ├── __init__.py           # Utility exports
+│   ├── codebase.py           # ZIP extraction and processing
+│   ├── video.py              # Video upload and AI analysis
+│   └── history.py            # Analysis history management
+├── config/
+│   ├── __init__.py           # Config exports
+│   └── settings.py           # All configuration settings
+├── styles/
+│   └── theme.css             # Custom CSS styling
+├── .env                      # API key (GOOGLE_API_KEY)
+└── README.md                 # This file
+```
 
-2. **Installation**:
+## Setup
+
+1. **Install dependencies**:
    ```bash
    pip install streamlit google-generativeai python-dotenv
    ```
 
-3. **Configuration**:
-   - Create a `.env` file in the root directory.
-   - Add your API key: `GOOGLE_API_KEY=your_key_here`
+2. **Configure API Key**:
+   Create a `.env` file with:
+   ```
+   GOOGLE_API_KEY=your_api_key_here
+   ```
 
-4. **Run Application**:
+3. **Run the app**:
    ```bash
    streamlit run app.py
    ```
 
-## Project Structure
+4. **Access**: Open `http://localhost:8501/tool`
 
-- `app.py`: Main entry point and orchestration.
-- `components/`: UI modules (Sidebar, Hero, Upload, Config).
-- `utils/`: Core logic for codebase extraction, video processing, and history.
-- `config/`: Centralized settings and constants.
-- `styles/`: Custom professional CSS themes.
+## Usage
 
----
-Built for performance and debugging excellence.
-=======
-# -CodeTrace
->>>>>>> 657f121e5cde35cba5d0be739c52b45f12accdf4
+1. Upload your project codebase as a ZIP file
+2. Upload a video recording of the bug
+3. (Optional) Describe the bug in the text area
+4. Click "Analyze Bug"
+5. Review the AI-generated debugging report
+
+## Tech Stack
+
+- **Frontend**: Streamlit
+- **AI**: Google Gemini 1.5 Flash
+- **3D Hero**: CSS 3D transforms with JavaScript physics

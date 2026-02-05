@@ -64,16 +64,32 @@ def delete_video(video_file) -> bool:
         return False
 
 
-def get_analysis_prompt(codebase: str) -> str:
+def get_analysis_prompt(codebase: str, bug_description: str = "") -> str:
     """
     Generate the analysis prompt for the AI.
     
     Args:
         codebase: The extracted codebase content
+        bug_description: Optional user-provided description of the bug
         
     Returns:
         Formatted prompt string
     """
+    # Build the user context section if description is provided
+    user_context = ""
+    if bug_description.strip():
+        user_context = f"""
+## USER BUG DESCRIPTION
+
+The developer provided the following context about the bug:
+
+> {bug_description}
+
+Use this information to focus your analysis on the specific issue described.
+
+---
+"""
+    
     return f"""Analyze the video and codebase to find and fix the bug.
 
 ## ANALYSIS PROTOCOL
@@ -97,7 +113,7 @@ def get_analysis_prompt(codebase: str) -> str:
 - Explain the fix clearly
 
 ---
-
+{user_context}
 ## CODEBASE
 
 {codebase}
