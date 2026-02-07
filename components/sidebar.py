@@ -12,40 +12,38 @@ def render_sidebar():
     """Render the CWM-style sidebar with navigation and history."""
     
     with st.sidebar:
-        # Custom Close Button - Uses JS to force close + Timestamp to ensure execution
-        if st.button("[ CLOSE PANEL ]", key="close_sidebar_btn", use_container_width=True):
+        # Header with Logo
+        st.markdown("# Code**Trace**")
+        
+        st.divider()
+        
+        # Close button - uses JavaScript to collapse sidebar
+        if st.button("[ ✕ CLOSE ]", key="close_sidebar_btn", use_container_width=True):
+            # Update session state
             st.session_state['sidebar_state'] = 'collapsed'
             
-            # Inject JS to force click the native close button (which is hidden but exists)
+            # Inject JavaScript to physically close the sidebar
             import time
             ts = time.time()
             components.html(f"""
             <script>
                 // Timestamp: {ts}
-                try {{
-                    const btn = window.parent.document.querySelector('[data-testid="stSidebar"] [data-testid="stSidebarHeader"] button');
-                    if (btn) {{
-                        btn.click();
-                    }} else {{
-                        // Fallback mechanism
-                        const header = window.parent.document.querySelector('[data-testid="stSidebarHeader"]');
-                        if (header) {{
-                            const innerBtn = header.querySelector('button');
-                            if (innerBtn) innerBtn.click();
+                (function() {{
+                    const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
+                    if (sidebar) {{
+                        // Use Streamlit's internal mechanism - simulate ESC key or click outside
+                        sidebar.style.transform = 'translateX(-100%)';
+                        sidebar.style.visibility = 'hidden';
+                        
+                        // Also trigger a click on the toggle button to sync state
+                        const toggle = window.parent.document.querySelector('[data-testid="stSidebarCollapsedControl"]');
+                        if (toggle) {{
+                            setTimeout(() => {{ toggle.click(); }}, 100);
                         }}
                     }}
-                }} catch(e) {{ console.log(e); }}
+                }})();
             </script>
             """, height=0, width=0)
-            
-            st.rerun()
-            
-        st.markdown("") # Spacer
-        
-        # Logo & Title using st.markdown with proper escaping
-        st.markdown("# Code**Trace**")
-        
-        st.divider()
         
         st.divider()
         
@@ -57,7 +55,6 @@ def render_sidebar():
         if history:
             for i, entry in enumerate(history[:6]):
                 timestamp = datetime.fromisoformat(entry['timestamp'])
-                time_str = timestamp.strftime('%m.%d / %H:%M')
                 name = entry['zip_name'][:18] + "..." if len(entry['zip_name']) > 18 else entry['zip_name']
                 
                 if st.button(

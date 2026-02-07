@@ -1,0 +1,240 @@
+/**
+ * Upload Section Styles
+ * 
+ * File upload interface with dropzones and action button.
+ */
+
+/* =============================================================================
+   Section Container
+   ============================================================================= */
+
+.upload-section {
+    background: #080807;
+    padding: 8rem 4rem 4rem;
+}
+
+.upload-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fcfcfc;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 3rem 0;
+}
+
+/* =============================================================================
+   Upload Grid
+   ============================================================================= */
+
+.upload-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+    .upload-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .upload-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* =============================================================================
+   Upload Box
+   ============================================================================= */
+
+.upload-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.upload-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    background: #ffd900;
+    color: #080807;
+    padding: 0.2rem 0.5rem;
+}
+
+.upload-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fcfcfc;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.upload-description {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #7d7d7d;
+    text-transform: uppercase;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    margin: 0 0 1.25rem 0;
+}
+
+/* =============================================================================
+   Dropzone
+   ============================================================================= */
+
+.upload-dropzone {
+    position: relative;
+    background: #f5f5f5;
+    padding: 2rem;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dropzone-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.dropzone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    pointer-events: none;
+}
+
+.dropzone-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.dropzone-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #080807;
+}
+
+.dropzone-hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: #7d7d7d;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.browse-button {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #080807;
+    color: #fcfcfc;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.6rem 1.2rem;
+    pointer-events: none;
+    transition: background 0.2s ease;
+}
+
+.upload-dropzone:hover .browse-button {
+    background: #ffd900;
+    color: #080807;
+}
+
+/* =============================================================================
+   Description Box
+   ============================================================================= */
+
+.description-box {
+    margin-bottom: 3rem;
+}
+
+.description-input {
+    width: 100%;
+    background: #f5f5f5;
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #080807;
+    padding: 1.5rem;
+    resize: vertical;
+    min-height: 120px;
+}
+
+.description-input:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px #ffd900;
+}
+
+.description-input::placeholder {
+    color: #7d7d7d;
+}
+
+/* =============================================================================
+   Analyze Button
+   ============================================================================= */
+
+.analyze-button {
+    width: 100%;
+    background: #fcfcfc;
+    color: #080807;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    padding: 1.25rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.analyze-button:hover:not(:disabled) {
+    background: #ffd900;
+}
+
+.analyze-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.analyze-button.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}

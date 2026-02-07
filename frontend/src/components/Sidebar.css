@@ -1,0 +1,160 @@
+/**
+ * Sidebar Styles
+ * 
+ * Slide-in navigation panel with overlay backdrop.
+ */
+
+/* =============================================================================
+   Overlay Backdrop
+   ============================================================================= */
+
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 998;
+}
+
+.sidebar-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =============================================================================
+   Sidebar Panel
+   ============================================================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100vh;
+    background: #080807;
+    border-right: 1px solid #292929;
+    z-index: 999;
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    overflow-y: auto;
+
+    /* Animation */
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+/* =============================================================================
+   Header
+   ============================================================================= */
+
+.sidebar-header {
+    flex-shrink: 0;
+}
+
+.sidebar-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fcfcfc;
+    margin: 0;
+}
+
+.sidebar-logo strong {
+    color: #ffd900;
+}
+
+/* =============================================================================
+   Divider
+   ============================================================================= */
+
+.sidebar-divider {
+    border: none;
+    height: 1px;
+    background: #292929;
+    margin: 1.25rem 0;
+}
+
+/* =============================================================================
+   Close Button
+   ============================================================================= */
+
+.sidebar-close {
+    width: 100%;
+    background: transparent;
+    color: #fcfcfc;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-close:hover {
+    background: #fcfcfc;
+    color: #080807;
+}
+
+/* =============================================================================
+   Sections
+   ============================================================================= */
+
+.sidebar-section {
+    flex-shrink: 0;
+}
+
+.sidebar-section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #ffd900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.75rem 0;
+}
+
+.sidebar-empty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #7d7d7d;
+    margin: 0;
+}
+
+.sidebar-manual {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #fcfcfc;
+    line-height: 2;
+}
+
+.sidebar-manual code {
+    background: #f5f5f5;
+    color: #080807;
+    padding: 0.1em 0.4em;
+    font-size: 0.75em;
+    border-radius: 2px;
+}
+
+/* =============================================================================
+   Footer
+   ============================================================================= */
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid #292929;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #7d7d7d;
+}

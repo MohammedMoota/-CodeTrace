@@ -15,11 +15,10 @@ def render_hero(skip_animation=False):
     assets_path = os.path.join(base_path, 'hero', 'assets')
     
     try:
-        # Also inject CSS from Streamlit side
-        # Also inject CSS from Streamlit side
+        # Inject CSS - toggle hidden by default, visible when scrolled to footer
         st.markdown("""
             <style>
-                /* Make header transparent but keep controls */
+                /* Hide Streamlit header decorations */
                 [data-testid="stHeader"] {
                     background-color: transparent !important;
                 }
@@ -27,39 +26,37 @@ def render_hero(skip_animation=False):
                     display: none !important;
                 }
                 
-                /* Hide default Sidebar Header (Close button/Icon) to avoid glitches */
+                /* Hide sidebar header (close button that Streamlit provides) */
                 [data-testid="stSidebarHeader"] {
                     display: none !important;
                 }
-
-                /* Base style for Sidebar Toggle - Hidden by default, forced White */
+                
+                /* Hide Streamlit navigation */
+                [data-testid="stSidebarNav"] {
+                    display: none !important;
+                }
+                
+                /* TOP-LEFT TOGGLE - Hidden by default */
                 [data-testid="stSidebarCollapsedControl"] {
-                    transition: opacity 0.3s ease !important;
-                    opacity: 0 !important; /* Hidden by default */
+                    opacity: 0 !important;
                     pointer-events: none !important;
-                    color: #ffffff !important;
-                    display: block !important;
+                    transition: opacity 0.3s ease !important;
                     z-index: 999999 !important;
                 }
                 
-                /* Ensure icon SVG inside is white */
+                /* Make toggle white */
                 [data-testid="stSidebarCollapsedControl"] svg {
                     fill: #ffffff !important;
                     stroke: #ffffff !important;
                 }
                 
-                /* Visible state class (toggled by JS) */
-                [data-testid="stSidebarCollapsedControl"].visible-trigger {
+                /* VISIBLE when scrolled to footer - class added by JS */
+                [data-testid="stSidebarCollapsedControl"].show-toggle {
                     opacity: 1 !important;
                     pointer-events: auto !important;
                 }
                 
-                /* Hide default Streamlit Sidebar Navigation (App, Tool, etc) */
-                [data-testid="stSidebarNav"] {
-                    display: none !important;
-                }
-                
-                /* Remove all Streamlit padding */
+                /* Remove Streamlit padding for fullscreen hero */
                 .stApp, .main, .block-container,
                 [data-testid="stAppViewContainer"],
                 [data-testid="stAppViewContainer"] > .main,
@@ -70,46 +67,47 @@ def render_hero(skip_animation=False):
             </style>
         """, unsafe_allow_html=True)
         
-        # Inject Scroll Listener JS
-        js_scroller = """
+        # Inject scroll detection JavaScript
+        scroll_js = """
         <script>
             (function() {
-                try {
+                function initScrollWatcher() {
                     const parentDoc = window.parent.document;
+                    const toggle = parentDoc.querySelector('[data-testid="stSidebarCollapsedControl"]');
+                    const scrollContainer = parentDoc.querySelector('[data-testid="stAppViewContainer"]');
                     
-                    const checkScroll = () => {
-                        const scrollContainer = parentDoc.querySelector('[data-testid="stAppViewContainer"]');
-                        const trigger = parentDoc.querySelector('[data-testid="stSidebarCollapsedControl"]');
+                    if (!toggle || !scrollContainer) {
+                        // Retry if elements not found yet
+                        setTimeout(initScrollWatcher, 500);
+                        return;
+                    }
+                    
+                    function checkScroll() {
+                        const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+                        const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
                         
-                        if (scrollContainer && trigger) {
-                            const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
-                            // Show when within 400px of bottom (Footer area)
-                            if (scrollHeight - scrollTop - clientHeight < 400) {
-                                trigger.classList.add('visible-trigger');
-                            } else {
-                                trigger.classList.remove('visible-trigger');
-                            }
+                        // Show toggle when within 400px of bottom (footer area)
+                        if (distanceFromBottom < 400) {
+                            toggle.classList.add('show-toggle');
                         } else {
-                            // Retry if elements not found yet
-                            setTimeout(checkScroll, 500);
+                            toggle.classList.remove('show-toggle');
                         }
-                    };
+                    }
                     
-                    // Attach listener
-                    setTimeout(() => {
-                        const scrollContainer = parentDoc.querySelector('[data-testid="stAppViewContainer"]');
-                        if (scrollContainer) {
-                            scrollContainer.removeEventListener('scroll', checkScroll); // Cleanup old
-                            scrollContainer.addEventListener('scroll', checkScroll);
-                            checkScroll(); // Initial
-                        }
-                    }, 500);
+                    // Remove old listeners and attach new one
+                    scrollContainer.removeEventListener('scroll', checkScroll);
+                    scrollContainer.addEventListener('scroll', checkScroll, { passive: true });
                     
-                } catch(e) { console.log("Scroll logic error:", e); }
+                    // Initial check
+                    checkScroll();
+                }
+                
+                // Start watching after a short delay
+                setTimeout(initScrollWatcher, 800);
             })();
         </script>
         """
-        components.html(js_scroller, height=0, width=0)
+        components.html(scroll_js, height=0, width=0)
 
         if skip_animation:
             return

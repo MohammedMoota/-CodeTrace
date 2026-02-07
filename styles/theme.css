@@ -308,10 +308,10 @@ hr,
 }
 
 /* ============================================================================
-   CRITICAL UI OVERRIDES (Prevent Glitch/Flash)
+   CRITICAL UI OVERRIDES
    ============================================================================ */
 
-/* BLACK CURTAIN - Prevents "Flash of Content" Glitch on Reload */
+/* Black Curtain - Prevents flash of content on reload */
 body::before {
     content: "";
     position: fixed;
@@ -320,51 +320,53 @@ body::before {
     width: 100vw;
     height: 100vh;
     background: #080807;
-    /* Match bg-dark */
     z-index: 99998;
-    /* Below Hero (99999), Above everything else */
-    animation: fadeCurtain 1.5s ease-out forwards;
+    animation: fadeCurtain 1.2s ease-out forwards;
     pointer-events: none;
 }
 
 @keyframes fadeCurtain {
-    0% {
+
+    0%,
+    50% {
         opacity: 1;
     }
 
-    60% {
-        opacity: 1;
-    }
-
-    /* Hold black for ~1s to cover loading */
     100% {
         opacity: 0;
     }
 }
 
-/* Hide default Streamlit Sidebar Navigation */
-[data-testid="stSidebarNav"] {
+/* Hide all Streamlit default navigation and controls */
+[data-testid="stSidebarNav"],
+[data-testid="stSidebarHeader"],
+[data-testid="stDecoration"] {
     display: none !important;
 }
 
-/* Hide default Sidebar Header (Close button/Icon) */
-/* DO NOT USE display: none - it breaks JS click! */
-[data-testid="stSidebarHeader"] {
+/* Top-left toggle - hidden by default, shown via JS when scrolled to footer */
+[data-testid="stSidebarCollapsedControl"] {
     opacity: 0 !important;
     pointer-events: none !important;
-    /* Only block mouse, JS still works */
-    position: absolute !important;
-    top: -9999px !important;
-    /* Move off-screen visually */
-    height: 0 !important;
-    overflow: hidden !important;
+    transition: opacity 0.3s ease !important;
 }
 
-/* Hide default App Header */
+[data-testid="stSidebarCollapsedControl"].show-toggle {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] svg {
+    fill: #ffffff !important;
+    stroke: #ffffff !important;
+}
+
+/* Transparent header */
 [data-testid="stHeader"] {
     background-color: transparent !important;
 }
 
-[data-testid="stDecoration"] {
-    display: none !important;
+/* Smooth sidebar transitions */
+[data-testid="stSidebar"] {
+    transition: transform 0.3s ease, width 0.3s ease !important;
 }
