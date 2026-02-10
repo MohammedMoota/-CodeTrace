@@ -2,18 +2,18 @@
 
 An AI-powered visual debugging tool that analyzes screen recordings and codebases to identify and fix root causes of bugs.
 
-## ✨ Features
+##  Features
 
-- **🎥 Visual Analysis**: Upload a screen recording (.mp4) of the bug in action.
-- **💻 Code Context**: Upload your codebase (.zip) for deep analysis.
-- **🤖 Gemini AI**: Uses Google's Gemini 1.5 Flash to correlate visual symptoms with code logic.
-- **⚡ Modern UI**: 
+- ** Visual Analysis**: Upload a screen recording (.mp4) of the bug in action.
+- ** Code Context**: Upload your codebase (.zip) for deep analysis.
+- ** Gemini AI**: Uses Google's Gemini 1.5 Flash to correlate visual symptoms with code logic.
+- ** Modern UI**: 
     - **Sticky Scroll Hero**: Immersive storytelling introduction.
     - **Video Previews**: Instant playback of uploaded evidence.
     - **Interactive Toasts**: Real-time feedback.
     - **Responsive Design**: Optimized for all devices.
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Node.js 18+
@@ -39,7 +39,7 @@ An AI-powered visual debugging tool that analyzes screen recordings and codebase
 4. **Open your browser**:
    Navigate to [http://localhost:3000](http://localhost:3000).
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
@@ -47,7 +47,7 @@ An AI-powered visual debugging tool that analyzes screen recordings and codebase
 - **AI Model**: Google Gemini 1.5 Flash
 - **Notifications**: [Sonner](https://sonner.emilkowal.ski/)
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 TraceBack Project/
@@ -61,10 +61,10 @@ TraceBack Project/
 └── README.md                 # Documentation
 ```
 
-## 🔒 Security & Privacy
+##  Security & Privacy
 
 - Codebase uploads are processed securely.
 - Video evidence is analyzed for debugging purposes only.
 
 ---
-*Built with ❤️ by [Your Name]*
+*Built with ❤️*
