@@ -15,8 +15,14 @@ def render_upload_section() -> Tuple[Optional[object], Optional[object]]:
     col1, col2 = st.columns(2, gap="medium")
     
     with col1:
-        st.markdown("**`[01]` / SOURCE CODE**")
-        st.caption("Upload the project ZIP archive containing the relevant source files for analysis.")
+        st.markdown("""
+        <div class="glass-card">
+            <span style="color: var(--accent); font-weight: 800;">[01]</span> / SOURCE CODE
+            <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0.5rem 0 1rem 0;">
+                Upload the project ZIP archive containing the relevant source files for analysis.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
         
         zip_file = st.file_uploader(
             "Upload Codebase",
@@ -29,8 +35,14 @@ def render_upload_section() -> Tuple[Optional[object], Optional[object]]:
             st.success(f"✓ Loaded: {zip_file.name[:30]}...")
     
     with col2:
-        st.markdown("**`[02]` / VISUAL EVIDENCE**")
-        st.caption("Upload the screen recording (.mp4) capturing the bug's visual behavior.")
+        st.markdown("""
+        <div class="glass-card">
+            <span style="color: var(--accent); font-weight: 800;">[02]</span> / VISUAL EVIDENCE
+            <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0.5rem 0 1rem 0;">
+                Upload the screen recording (.mp4) capturing the bug's visual behavior.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
         
         video_file = st.file_uploader(
             "Upload Evidence",
@@ -48,7 +60,14 @@ def render_upload_section() -> Tuple[Optional[object], Optional[object]]:
 def render_bug_description() -> str:
     """Render the bug description input."""
     
-    st.markdown("**`[03]` / CONTEXT & DESCRIPTION**")
+    st.markdown("""
+    <div class="glass-card" style="margin-top: 1rem;">
+        <span style="color: var(--accent); font-weight: 800;">[03]</span> / CONTEXT & DESCRIPTION
+        <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0.5rem 0 1rem 0;">
+            Provide any additional context or steps to reproduce the bug.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     
     description = st.text_area(
         "Describe the bug",

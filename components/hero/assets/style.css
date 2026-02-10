@@ -14,9 +14,9 @@ html,
 body {
     width: 100vw;
     height: 100vh;
-    background: #e8e8e8;
+    background: #020617;
     overflow: hidden;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', system-ui, sans-serif;
 }
 
 /* ===== PHASE 1: HERO - TRUE FULLSCREEN ===== */
@@ -32,7 +32,7 @@ body {
     align-items: center;
     z-index: 1;
     transition: opacity 0.5s ease;
-    background: #0a0a0a;
+    background: #020617;
 }
 
 .hero-wrapper.hidden {
@@ -44,7 +44,7 @@ body {
 .hero-container {
     width: 100%;
     height: 100%;
-    background: #e8e8e8;
+    background: #0f172a;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -82,13 +82,14 @@ body {
     top: 5rem;
     font-family: 'Inter', sans-serif;
     font-size: clamp(2.5rem, 9vw, 6rem);
-    font-weight: 800;
+    font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
-    letter-spacing: -0.03em;
-    color: #080807;
+    letter-spacing: -0.05em;
+    color: #f8fafc;
     line-height: 1;
     transition: transform 0.08s ease-out, opacity 0.08s ease-out;
+    text-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
 }
 
 /* Center icon */
@@ -99,15 +100,16 @@ body {
     transform: translate(-50%, -50%);
     width: 40px;
     height: 40px;
-    border: 2px solid #080807;
+    border: 2px solid #38bdf8;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: #080807;
+    color: #38bdf8;
     background: transparent;
     transition: transform 0.08s ease-out;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
 }
 
 /* "</ANALYSIS>" - BOTTOM-RIGHT corner with highlight background */
@@ -124,10 +126,11 @@ body {
     font-weight: 400;
     font-style: italic;
     text-transform: uppercase;
-    color: #080807;
-    background: #c8ff00;
+    color: #020617;
+    background: #38bdf8;
     padding: 0.4rem 0.8rem;
     display: inline-block;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
 }
 
 /* Bottom bar */
@@ -213,7 +216,7 @@ body {
 }
 
 .word-text.highlight {
-    color: #c8ff00;
+    color: #38bdf8;
 }
 
 .mask {
@@ -316,10 +319,11 @@ body {
 .done-title {
     font-family: 'Inter', sans-serif;
     font-size: clamp(2rem, 6vw, 4rem);
-    font-weight: 800;
-    color: #c8ff00;
+    font-weight: 900;
+    color: #38bdf8;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
 }
 
 .done-subtitle {
@@ -375,7 +379,8 @@ body {
 
 .progress-fill {
     height: 100%;
-    background: #c8ff00;
+    background: #38bdf8;
     width: 0%;
     transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }

@@ -48,7 +48,7 @@ for (let i = 0; i < 60; i++) {
     tick.style.transform = `rotate(${i * 6}deg)`;
     if (i % 5 === 0) {
         tick.style.height = '22px';
-        tick.style.background = '#c8ff00';
+        tick.style.background = '#38bdf8';
     }
     dom.dialBg.appendChild(tick);
 }

@@ -13,7 +13,12 @@ def render_sidebar():
     
     with st.sidebar:
         # Header with Logo
-        st.markdown("# Code**Trace**")
+        st.markdown("""
+        <div style="padding: 1rem 0;">
+            <h1 style="font-size: 1.5rem !important; margin: 0; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CodeTrace</h1>
+            <span style="font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-secondary); text-transform: uppercase;">Elite Bug Detective</span>
+        </div>
+        """, unsafe_allow_html=True)
         
         st.divider()
         
@@ -78,11 +83,13 @@ def render_sidebar():
         # Quick Guide
         st.markdown("**/ MANUAL**")
         st.markdown("""
-`[01]` Upload codebase  
-`[02]` Upload evidence  
-`[03]` Add context  
-`[04]` Initialize scan
-        """)
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--accent);">[01]</span> UPLOAD CODEBASE</div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--accent);">[02]</span> UPLOAD EVIDENCE</div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--accent);">[03]</span> ADD CONTEXT</div>
+            <div><span style="color: var(--accent);">[04]</span> INITIALIZE SCAN</div>
+        </div>
+        """, unsafe_allow_html=True)
         
         # Footer
         st.markdown("---")
