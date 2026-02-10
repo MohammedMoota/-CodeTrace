@@ -1,0 +1,63 @@
+.app {
+  min-height: 100vh;
+  background: #080807;
+}
+
+.sidebarToggle {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 3000;
+  width: 44px;
+  height: 44px;
+  background: rgba(8, 8, 7, 0.85);
+  color: #fcfcfc;
+  font-size: 1.15rem;
+  border: 1px solid #292929;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.2s ease, background 0.2s ease;
+
+  /* Flex center for icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+   State 1: Hero Complete -> Button is visible
+   State 2: Sidebar Open -> Button MUST be visible and on top to allow closing
+*/
+.sidebarToggle.visible,
+.sidebarToggle.open {
+  opacity: 1;
+  pointer-events: auto !important;
+  z-index: 9999 !important;
+  /* Force top */
+}
+
+/* When open specifically, ensure it pops against the sidebar bg */
+.sidebarToggle.open {
+  background: #fcfcfc;
+  color: #080807;
+  border-color: #fcfcfc;
+}
+
+.sidebarToggle:hover {
+  background: #ffd900;
+  /* Yellow hover for feedback */
+  color: #080807;
+  border-color: #ffd900;
+  transform: scale(1.05);
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  background: #080807;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

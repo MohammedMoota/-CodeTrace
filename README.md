@@ -1,72 +1,70 @@
 # CodeTrace - AI Bug Detective
 
-An AI-powered visual debugging tool that analyzes code and video recordings to identify and fix bugs.
+An AI-powered visual debugging tool that analyzes screen recordings and codebases to identify and fix root causes of bugs.
 
-## Features
+## ✨ Features
 
-- **Video Analysis**: Upload a screen recording of the bug in action
-- **Code Analysis**: Upload your codebase as a ZIP file
-- **AI-Powered**: Uses Google Gemini AI to correlate visual bugs with code
-- **Detailed Reports**: Get specific file and line references with fix suggestions
-- **History**: View past analyses anytime
+- **🎥 Visual Analysis**: Upload a screen recording (.mp4) of the bug in action.
+- **💻 Code Context**: Upload your codebase (.zip) for deep analysis.
+- **🤖 Gemini AI**: Uses Google's Gemini 1.5 Flash to correlate visual symptoms with code logic.
+- **⚡ Modern UI**: 
+    - **Sticky Scroll Hero**: Immersive storytelling introduction.
+    - **Video Previews**: Instant playback of uploaded evidence.
+    - **Interactive Toasts**: Real-time feedback.
+    - **Responsive Design**: Optimized for all devices.
 
-## Project Structure
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. **Navigate to the app directory**:
+   ```bash
+   cd app
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000).
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [CSS Modules](https://github.com/css-modules/css-modules)
+- **AI Model**: Google Gemini 1.5 Flash
+- **Notifications**: [Sonner](https://sonner.emilkowal.ski/)
+
+## 📂 Project Structure
 
 ```
 TraceBack Project/
-├── app.py                    # Entry point (redirects to tool page)
-├── pages/
-│   └── tool.py               # Main tool page with all functionality
-├── components/
-│   ├── __init__.py           # Component exports
-│   ├── hero.py               # 3D rotating sphere hero section
-│   ├── sidebar.py            # Sidebar with history and guide
-│   ├── upload.py             # File upload components
-│   └── config_panel.py       # Configuration panel and footer
-├── utils/
-│   ├── __init__.py           # Utility exports
-│   ├── codebase.py           # ZIP extraction and processing
-│   ├── video.py              # Video upload and AI analysis
-│   └── history.py            # Analysis history management
-├── config/
-│   ├── __init__.py           # Config exports
-│   └── settings.py           # All configuration settings
-├── styles/
-│   └── theme.css             # Custom CSS styling
-├── .env                      # API key (GOOGLE_API_KEY)
-└── README.md                 # This file
+├── app/                      # Next.js Application
+│   ├── src/
+│   │   ├── app/              # App Router Pages & Layouts
+│   │   ├── components/       # Reusable UI Components
+│   │   └── styles/           # Global Styles
+│   ├── public/               # Static Assets
+│   └── package.json          # Project Configuration
+└── README.md                 # Documentation
 ```
 
-## Setup
+## 🔒 Security & Privacy
 
-1. **Install dependencies**:
-   ```bash
-   pip install streamlit google-generativeai python-dotenv
-   ```
+- Codebase uploads are processed securely.
+- Video evidence is analyzed for debugging purposes only.
 
-2. **Configure API Key**:
-   Create a `.env` file with:
-   ```
-   GOOGLE_API_KEY=your_api_key_here
-   ```
-
-3. **Run the app**:
-   ```bash
-   streamlit run app.py
-   ```
-
-4. **Access**: Open `http://localhost:8501/tool`
-
-## Usage
-
-1. Upload your project codebase as a ZIP file
-2. Upload a video recording of the bug
-3. (Optional) Describe the bug in the text area
-4. Click "Analyze Bug"
-5. Review the AI-generated debugging report
-
-## Tech Stack
-
-- **Frontend**: Streamlit
-- **AI**: Google Gemini 1.5 Flash
-- **3D Hero**: CSS 3D transforms with JavaScript physics
+---
+*Built with ❤️ by [Your Name]*
