@@ -4,10 +4,10 @@ An AI-powered visual debugging tool that analyzes screen recordings and codebase
 
 ##  Features
 
-- ** Visual Analysis**: Upload a screen recording (.mp4) of the bug in action.
-- ** Code Context**: Upload your codebase (.zip) for deep analysis.
-- ** Gemini AI**: Uses Google's Gemini 1.5 Flash to correlate visual symptoms with code logic.
-- ** Modern UI**: 
+- **Visual Analysis**: Upload a screen recording (.mp4) of the bug in action.
+- **Code Context**: Upload your codebase (.zip) for deep analysis.
+- **Gemini AI**: Uses Google's Gemini 1.5 Flash to correlate visual symptoms with code logic.
+- **Modern UI**: 
     - **Sticky Scroll Hero**: Immersive storytelling introduction.
     - **Video Previews**: Instant playback of uploaded evidence.
     - **Interactive Toasts**: Real-time feedback.
